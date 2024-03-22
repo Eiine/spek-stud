@@ -1,0 +1,21 @@
+{
+  "name": "lector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node main.js",
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "miguel",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^29.1.4"
+  },
+  "dependencies": {
+    "clipboardy": "^4.0.0",
+    "electron-localshortcut": "^3.2.1",
+    "say": "^0.16.0"
+  }
+}
