@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
 let pause=false
 let contador=0
 let lecturaEnProgreso=false
-let speed;
+let speed=1.4
 //lectura
 ipcRenderer.on("leer",async(e,data)=>{
     
@@ -45,6 +45,11 @@ ipcRenderer.on("stop",(e,data)=>{
     say.stop()
     pause=true
     contador=-1
+})
+
+ipcRenderer.on("speedUp",(e,data)=>{
+    speed+= 0.1
+    console.log(speed);
 })
 
 })

@@ -39,6 +39,10 @@ app.on('ready', () => {
   globalShortcut.register('CommandOrControl+s', () => {
     mainWindow.webContents.send("stop",false)
   })
+
+  globalShortcut.register('CommandOrControl+v', () => {
+    mainWindow.webContents.send("speedUp","incremento")
+  })
 });
 
 app.on('will-quit', () => {
