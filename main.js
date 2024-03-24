@@ -1,48 +1,63 @@
-const { app, BrowserWindow, globalShortcut, ipcMain,clipboard, screen } = require('electron');
-const path= require('path')
+const { app, BrowserWindow, globalShortcut, clipboard, screen, Tray, Menu } = require('electron');
+const path = require('path');
+
 let mainWindow;
+let tray;
 
 app.on('ready', () => {
+  // Crea la ventana principal
   mainWindow = new BrowserWindow({
     width: 320,
     height: 225,
+    show: false, // Evita que la ventana principal se muestre inmediatamente
     webPreferences: {
       nodeIntegration: true,
-      preload: path.join(__dirname, "/preload",'main.js')
+      preload: path.join(__dirname, "/preload", 'main.js')
     }
   });
-  const { width, height } = screen.getPrimaryDisplay().workAreaSize
-  mainWindow.setPosition(width - 320, height - 220)
 
-  
-  mainWindow.loadFile(path.join(__dirname,"/view",'index.html'));
+  // Carga el archivo HTML en la ventana principal
+  mainWindow.loadFile(path.join(__dirname, "/view", 'index.html'));
 
+  // Obtén el tamaño de la pantalla primaria
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+
+  // Calcula las coordenadas para la esquina inferior derecha
+  const x = width - mainWindow.getSize()[0]; // Ancho de la pantalla menos el ancho de la ventana
+  const y = height - mainWindow.getSize()[1]; // Altura de la pantalla menos la altura de la ventana
+
+  // Establece la posición de la ventana principal
+  mainWindow.setPosition(x, y);
+
+  // Crea un icono personalizado en la bandeja del sistema
+  tray = new Tray(path.join(__dirname,"/view" ,'robo.png'));
+
+  // Define el menú contextual para el icono de la bandeja
+  const contextMenu = Menu.buildFromTemplate([
+    { label: 'Abrir', click: () => mainWindow.show() },
+    { type: 'separator' },
+    { label: 'Salir', click: () => app.quit() }
+  ]);
+
+  // Establece el menú contextual para el icono de la bandeja
+  tray.setContextMenu(contextMenu);
+
+  // Muestra la ventana principal cuando se hace doble clic en el icono de la bandeja
+  tray.on('double-click', () => {
+    mainWindow.show();
+  });
+
+  // Oculta la ventana principal cuando se minimiza
   mainWindow.on('minimize', () => {
-    mainWindow.setSkipTaskbar(true)
-  })
-
-  mainWindow.on('restore', () => {
-    mainWindow.setSkipTaskbar(false)
-  })
+    mainWindow.hide();
+  });
 
   // Registra un atajo de teclado global
-   globalShortcut.register('CommandOrControl+A', () => {
-    const text=clipboard.readText()
-    mainWindow.webContents.send("leer",text)
+  globalShortcut.register('CommandOrControl+A', () => {
+    const text = clipboard.readText()
+    mainWindow.webContents.send("leer", text)
 
   });
-  globalShortcut.register('CommandOrControl+P', () => {
-    
-    mainWindow.webContents.send("pause",true)
-
-  });
-  globalShortcut.register('CommandOrControl+s', () => {
-    mainWindow.webContents.send("stop",false)
-  })
-
-  globalShortcut.register('CommandOrControl+v', () => {
-    mainWindow.webContents.send("speedUp","incremento")
-  })
 });
 
 app.on('will-quit', () => {
@@ -53,4 +68,3 @@ app.on('will-quit', () => {
 app.on('window-all-closed', () => {
   app.quit();
 });
-
