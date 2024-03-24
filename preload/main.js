@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
 let pause=false
 let contador=0
 let lecturaEnProgreso=false
-
+let speed;
 //lectura
 ipcRenderer.on("leer",async(e,data)=>{
     
@@ -14,13 +14,14 @@ ipcRenderer.on("leer",async(e,data)=>{
         console.log("Ya hay una lectura en curso. No se puede iniciar otra.");
         return; 
     }
-    lecturaEnProgreso = true;     
-    const fracmen= data.split(",")
+    lecturaEnProgreso = true;   
+    let texto= data.normalize('NFD').replace(/[\u0300-\u036f]/g, '')  
+    const fracmen= texto.split(",")
      
      for (let i = contador; i < fracmen.length; i++) {
         
         if (pause== false ) {
-            await speak(fracmen[i])
+            await speak(fracmen[i],speed)
             contador++   
         }
         else{
