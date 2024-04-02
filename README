@@ -1,64 +1,49 @@
 **Study Reader**
 
----
-
 **Descripción:**
 
 Lector es una aplicación en desarrollo diseñada para facilitar la conversión de texto en voz de manera cómoda y personalizable. Utilizando la tecnología Electron, Lector está pensado para ser una aplicación de escritorio multiplataforma, brindando una experiencia más integrada y fluida que su contraparte web.
 
----
 
 **Características principales:**
 
-- **Lectura de texto a voz:** Convierte texto seleccionado en voz, permitiendo escuchar el contenido en lugar de leerlo manualmente.
+**Lectura de texto a voz:** Convierte texto seleccionado en voz, permitiendo escuchar el contenido en lugar de leerlo manualmente.
 
-- **Control de velocidad:** Ajusta la velocidad de lectura según tus preferencias, adaptándola a tu ritmo de comprensión.
+**Control de velocidad:** Ajusta la velocidad de lectura según tus preferencias, adaptándola a tu ritmo de comprensión.
 
-- **Pausa y detención:** Puedes pausar y detener la lectura en cualquier momento, otorgándote un control total sobre la reproducción del texto.
-
----
+**Pausa y detención:** Puedes pausar y detener la lectura en cualquier momento, otorgándote un control total sobre la reproducción del texto.
 
 **Estado del proyecto:**
 
 Actualmente, Lector se encuentra en desarrollo activo. Aunque funcional, pueden existir errores y limitaciones. Si encuentras algún problema o tienes alguna sugerencia, ¡no dudes en informarnos para mejorar la aplicación!
 
----
 
 **Instrucciones de instalación:**
 
 Para instalar y ejecutar Lector en tu sistema, sigue estos pasos:
 
-1. Clona o descarga el repositorio desde [GitHub](https://github.com/tu-usuario/lector).
+1. Clona o descarga el repositorio desde [GitHub].
 2. Abre una terminal y navega hasta el directorio del proyecto.
 3. Ejecuta el comando `npm install` para instalar todas las dependencias.
 4. Una vez completada la instalación, ejecuta la aplicación con el comando `npm start`.
-
----
 
 **Requisitos del sistema:**
 
 - Node.js instalado en tu sistema.
 - Dependencias de Electron y otras bibliotecas especificadas en el archivo `package.json`.
 
----
-
 **Contribución:**
 
 ¡Tu contribución es bienvenida! Si deseas colaborar con el desarrollo de Lector, puedes hacerlo enviando sugerencias, informes de errores o contribuciones directas a través de [GitHub](https://github.com/tu-usuario/lector).
 
----
 
 **Licencia:**
 
 Lector se distribuye bajo la licencia ISC. Consulta el archivo `LICENSE` para obtener más información.
 
----
-
 **Autor:**
 
 Desarrollado por Miguel Guerrero.
-
----
 
 **Nota:**
 
